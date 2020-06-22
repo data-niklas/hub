@@ -1,4 +1,4 @@
-#!/bin/env zsh
+#!/bin/env sh
 hubdir=$HOME/hub
 
 if [ -n "$HUB" ]; then hubdir=$HUB; fi
@@ -8,10 +8,10 @@ if [ -z "$1" ]; then ls -A "$hubdir";exit; fi
 
 
 function add_hub(){
-	1=$(readlink -f "$1")
+	file=$(readlink -f "$1")
 	name=""
 	if [ -n "$2" ]; then name=$2; fi
-	ln -s "$1" "$hubdir/$name"
+	ln -s "$file" "$hubdir/$name"
 }
 
 function print_help(){
@@ -25,4 +25,3 @@ elif [ "$1" = "change" ] || [ "$1" = "-c" ]; then mv "$hubdir/$2" "$hubdir/$3";
 elif [ "$1" = "list" ] || [ "$1" = "-l" ]; then ls -A "$hubdir";
 else print_help;
 fi
-
