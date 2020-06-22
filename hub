@@ -1,0 +1,28 @@
+#!/bin/env zsh
+hubdir=$HOME/hub
+
+if [ -n "$HUB" ]; then hubdir=$HUB; fi
+if [ ! -d "$hubdir" ]; then mkdir -p "$hubdir"; fi
+
+if [ -z "$1" ]; then ls -A "$hubdir";exit; fi
+
+
+function add_hub(){
+	1=$(readlink -f "$1")
+	name=""
+	if [ -n "$2" ]; then name=$2; fi
+	ln -s "$1" "$hubdir/$name"
+}
+
+function print_help(){
+	echo $'Options:\n\tAdd a file/dir to the hub [-a|add]; Can have an optional new name\n\tRemove a file/dir [-r|remove]\n\tChange a file/dir [-c|change]\n\tList all files/dirs [-l|list]\n\nExamples:\n\thub -a ~/Programming/Somedir newname\n\thub\n\thub -r newname\n\thub -c newname newername'
+}
+
+
+if [ "$1" = "add" ] || [ "$1" = "-a" ]; then add_hub $2 $3;
+elif [ "$1" = "remove" ] || [ "$1" = "-r" ]; then rm "$hubdir/$2";
+elif [ "$1" = "change" ] || [ "$1" = "-c" ]; then mv "$hubdir/$2" "$hubdir/$3";
+elif [ "$1" = "list" ] || [ "$1" = "-l" ]; then ls -A "$hubdir";
+else print_help;
+fi
+
