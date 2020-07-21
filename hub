@@ -23,5 +23,7 @@ if [ "$1" = "add" ] || [ "$1" = "-a" ]; then add_hub $2 $3;
 elif [ "$1" = "remove" ] || [ "$1" = "-r" ]; then rm "$hubdir/$2";
 elif [ "$1" = "change" ] || [ "$1" = "-c" ]; then mv "$hubdir/$2" "$hubdir/$3";
 elif [ "$1" = "list" ] || [ "$1" = "-l" ]; then ls -A "$hubdir";
+elif [ -z "$2" ] && [ -n "$1" ]; then xdg-open "$hubdir/$1";
 else print_help;
 fi
+
