@@ -19,12 +19,14 @@ Options:
 	Remove a file/dir [-r|remove]
 	Change a file/dir [-c|change]
 	List all files/dirs [-l|list]
+	Open the file/dir via xdg-open
 
 Examples:
 	hub -a ~/Programming/Somedir newname
 	hub
 	hub -r newname
 	hub -c newname newername
+	hub somefile
  ```
 # Installing
 - Just copy this script file into some bin folder (e.g.: /bin)
