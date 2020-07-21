@@ -31,3 +31,11 @@ Examples:
 # Installing
 - Just copy this script file into some bin folder (e.g.: /bin)
 - hub directory can be changed via the *$HUB* variable
+
+# Extra
+For convenience add a function to a sourced .sh file (`.bashrc` / `.zshrc`, ...)
+```
+function ch(){
+ cd "$HUB/$1"
+}
+```
